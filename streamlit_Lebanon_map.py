@@ -10,7 +10,7 @@ st.set_page_config(page_title= "Lebanon: 2006 vs 2023-2024 airstrikes", page_ico
 def load_data():
     df_2006 = pd.read_csv("Lebanon_2006_ICEWS.csv")
 
-    df_2023 = pd.read_csv("Lebanon_airstrikes_2023-2024.csv")
+    df_2023 = pd.read_csv("ACLED_Lebanon_airstrikes_2023-2024.csv")
 
     return df_2006, df_2023
 
