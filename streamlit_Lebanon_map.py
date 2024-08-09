@@ -10,7 +10,7 @@ st.set_page_config(page_title= "Lebanon: 2006 vs 2023-2024 airstrikes", page_ico
 def load_data():
     df_2006 = pd.read_csv("Lebanon_2006_ICEWS.csv")
 
-    df_2023 = pd.read_csv("ACLED_Lebanon_airstrikes_2023-2024.csv")
+    df_2023 = pd.read_csv("Lebanon_airstrikes_2023-2024.csv")
 
     return df_2006, df_2023
 
@@ -27,7 +27,7 @@ with col_1:
                 lon=df_2006["Longitude"],
                 mode='markers',
                 marker=dict(size=9, color='blue'),
-                name='2006 Data',
+                name='2006 Airstrikes',
                 hovertext='Date: ' + df_2006["Event Date"].astype(str) + '<br>Lat: ' + df_2006["Latitude"].astype(str) + '<br>Lon: ' + df_2006["Longitude"].astype(str),
                 hoverinfo='text'  # Tells Plotly to use the hovertext attribute for hover information  # Label for legend
                     ))
@@ -36,7 +36,7 @@ with col_1:
                         lon=df_2023["longitude"],
                         mode='markers',
                         marker=dict(size=9, color='red'),  # Optional: set color for 2023 data points,
-                        name='2023 Data',
+                        name='2023-2024 Aistrikes',
                         hovertext='Date: ' + df_2023["date"].astype(str) + '<br>Lat: ' + df_2023["latitude"].astype(str) + '<br>Lon: ' + df_2023["longitude"].astype(str),
                         hoverinfo='text'  # Tells Plotly to use the hovertext attribute for hover information
                     ))
@@ -48,18 +48,18 @@ with col_1:
         showlegend=True,
         margin={"r":0,"t":0,"l":0,"b":0},
         legend=dict(
-        title=dict(
-        text="Legend (select)",  # Title for the legend
-        font=dict(
-            size=15,  # Font size for the legend title
-            color="black"  # Font color for the legend title
-        )),
+            title=dict(
+            text="<b>Legend</b>: <br> <i>Click year to highlight in map</i> <br> ",  # Title for the legend
+            font=dict(
+                size=17,  # Font size for the legend title
+                color="black"  # Font color for the legend title
+            )),
         x=0,  # Position the legend to the left
         y=1,  # Position the legend to the top
         xanchor='left',  # Anchor the legend's x position to the left
         yanchor='top',# Anchor the legend's y position to the top
         font=dict(
-        size=15)# Increase the font size of the legend 
+        size=17)# Increase the font size of the legend 
         )
         )
         st.session_state['fig'] = fig
@@ -68,12 +68,13 @@ with col_1:
     map_placeholder.plotly_chart(st.session_state['fig'])
 
     st.markdown("""***Data Sources**:  
-                - 2023-2024: Armed Conflict Location & Event Data Project (ACLED); www.acleddata.com;  
-                - 2006: Boschee, Elizabeth; Lautenschlager, Jennifer; O'Brien, Sean; Shellman, Steve; Starz, James; Ward, Michael, 2015, 'ICEWS Coded Event Data', https://doi.org/10.7910/DVN/28075, Harvard Dataverse, V37*""")
+                - 2023-2024 airstrikes: Armed Conflict Location & Event Data Project (ACLED); www.acleddata.com;  
+                - 2006 airstrikes: Boschee, Elizabeth; Lautenschlager, Jennifer; O'Brien, Sean; Shellman, Steve; Starz, James; Ward, Michael, 2015, 'ICEWS Coded Event Data', https://doi.org/10.7910/DVN/28075, Harvard Dataverse, V37*""")
 
 with col_2:
     # Get user input for new point
     st.markdown("**Search specific coordinates in map:**")
+    st.markdown("***Try example coordinates for Beirut:*** Latitude: 33.89, Longitude: 35.50")
     lat_input = st.text_input("Latitude", "")
     lon_input = st.text_input("Longitude", "")
 
