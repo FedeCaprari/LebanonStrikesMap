@@ -20,6 +20,7 @@ col_1, col_2 = st.columns([1.5,1], gap="medium")
 df_2006, df_2023 = load_data()
 
 with col_1:
+    mapbox_token = st.secrets["mapbox"]["token"]
     #Plot main map
     if 'fig' not in st.session_state:
         fig = go.Figure(go.Scattermapbox(
@@ -41,7 +42,8 @@ with col_1:
                         hoverinfo='text'  # Tells Plotly to use the hovertext attribute for hover information
                     ))
         fig.update_layout(
-        mapbox_style="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+        mapbox_style="streets",
+        mapbox_accesstoken=mapbox_token,
         width=800, 
         height=600,
         mapbox=dict(center=dict(lat=33.9, lon=35.7), zoom=7.5),
