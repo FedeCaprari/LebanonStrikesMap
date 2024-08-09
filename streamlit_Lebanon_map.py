@@ -51,7 +51,7 @@ with col_1:
             title=dict(
             text="<b>Legend</b>: <br> <i>Click year to highlight in map</i> <br> ",  # Title for the legend
             font=dict(
-                size=17,  # Font size for the legend title
+                size=16,  # Font size for the legend title
                 color="black"  # Font color for the legend title
             )),
         x=0,  # Position the legend to the left
@@ -59,7 +59,7 @@ with col_1:
         xanchor='left',  # Anchor the legend's x position to the left
         yanchor='top',# Anchor the legend's y position to the top
         font=dict(
-        size=17)# Increase the font size of the legend 
+        size=16)# Increase the font size of the legend 
         )
         )
         st.session_state['fig'] = fig
